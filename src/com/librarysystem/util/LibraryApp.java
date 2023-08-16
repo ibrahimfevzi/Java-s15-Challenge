@@ -30,17 +30,16 @@ public class LibraryApp  {
             System.out.println("2. Kitap Ödünç Ver");
             System.out.println("3. Kitap Geri Al");
             System.out.println("4. Kitap Ara");
-            System.out.println("5. Ceza Hesapla");
-            System.out.println("6. Fatura Oluştur");
-            System.out.println("7. Kitap Listele");
-            System.out.println("8. Üye Listele");
+            System.out.println("5. Fatura Görüntüle");
+            System.out.println("6. Kitap Listele");
+            System.out.println("7. Üye Listele");
             System.out.println("************** ÜYE İŞLEMLERİ **************");
-            System.out.println("9.  Üye Ekle");
-            System.out.println("10. Üye Sil");
-            System.out.println("11. Üye Güncelle");
-            System.out.println("12. Üyelik Doğrula");
-            System.out.println("13. Ödünç Alınan Kitapları Listele");
-            System.out.println("14. Çıkış Yap");
+            System.out.println("8.  Üye Ekle");
+            System.out.println("9. Üye Sil");
+            System.out.println("10. Üye Güncelle");
+            System.out.println("11. Üyelik Doğrula");
+            System.out.println("12. Ödünç Alınan Kitapları Listele");
+            System.out.println("13. Çıkış Yap");
             System.out.print("Seçiminizi Girin: ");
 
             int choice = scanner.nextInt();
@@ -60,33 +59,30 @@ public class LibraryApp  {
                     searchBook();
                     break;
                 case 5:
-                    calculateFine();
-                    break;
-                case 6:
                     createBill();
                     break;
-                case 7:
+                case 6:
                     library.showBook();
                     break;
-                case 8:
+                case 7:
                    Library.listMembers();
                     break;
-                case 9:
+                case 8:
                     addMember();
                     break;
-                case 10:
+                case 9:
                     removeMember();
                     break;
-                case 11:
+                case 10:
                     updateMember();
                     break;
-                case 12:
+                case 11:
                     verifyMember();
                     break;
-                case 13:
+                case 12:
                     reader.showBook();
                     break;
-                case 14:
+                case 13:
                     System.out.println("Kütüphane Yönetim Sistemini Kullandığınız İçin Teşekkürler!");
                     System.exit(0);
 
@@ -106,13 +102,7 @@ public class LibraryApp  {
         library.createBill(memberName);
     }
 
-    private static void calculateFine() {
-        System.out.println("\nCeza hesaplanıyor...");
-        System.out.print("Üyenin adını girin: ");
-        String memberName = scanner.nextLine();
 
-        library.calculateFine(memberName);
-    }
 
     private static void verifyMember() {
         System.out.println("\nÜyelik doğrulanıyor...");

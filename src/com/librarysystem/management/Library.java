@@ -37,9 +37,11 @@ public class Library {
         if (book1 != null && member != null) {
             if (book1.getStatus() == BookStatus.AVAILABLE && member.getNoBooksIssued() < member.getMaxBookLimit()) {
                 book1.updateStatus(BookStatus.BORROWED);
-                member.borrowBook();
                 member.incBookIssued();
-                System.out.println(book1.getTitle() + " " + member.getName() + " isimli üye tarafından ödünç alındı.");
+                System.out.println(book1.getTitle() + " " + member.getName() + " isimli üye tarafından ödünç alındı."
+                        + "\n" + "Ödünç alınan kitap sayısı: " + member.getNoBooksIssued()
+                        + "\n" + "Max. Kitap Limiti: " + member.getMaxBookLimit());
+                createBill(reader);
             } else {
                 System.out.println("Kitap kullanılabilir değil.");
             }
@@ -59,25 +61,17 @@ public class Library {
             book.updateStatus(BookStatus.AVAILABLE);
             reader.decBookIssued();
             System.out.println(bookTitle + "  " + readerName + " isimli üye tarafından geri verildi.");
+            createBill(readerName);
         } else {
             System.out.println("Hatalı işlem.");
         }
     }
 
-    public void calculateFine(String memberName) {
-        MemberRecord member = getMember(memberName);
-        // Implementation for calculating fine
-        // Assuming some calculation based on overdue books
-        int overdueBooks = member.getNoBooksIssued() - member.getMaxBookLimit();
-        double fineAmount = overdueBooks * 2.0; // Assuming a fixed fine per overdue book
-        System.out.println( member.getName() + " isimli üye için hesaplanan ceza: " +  ": $" + fineAmount);
-    }
 
     public void createBill(String memberName) {
         MemberRecord member = getMember(memberName);
-        // Implementation for creating a bill for the member
-        // Might involve calculating fine and other charges
-        calculateFine(memberName); // Calculate the fine first
+        double Amount = member.getNoBooksIssued() * 20;
+        System.out.println( member.getName() + " isimli üye için fatura bedeli " +  ": $" + Amount);
     }
 
 
