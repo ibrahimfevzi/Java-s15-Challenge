@@ -30,14 +30,14 @@ public class Reader extends Person {
         String readerName = scanner.nextLine();
 
         Book borrowedBook = library.findBookByTitle(title);
-        if (borrowedBook != null) {
+        if ((borrowedBook != null)) {
             library.lendBook(title, readerName);
             addBorrowedBook(borrowedBook);
         } else {
             System.out.println("Kitap bulunamadı.");
         }
     }
-
+//
     public  void returnBook() {
         System.out.println("\nKitap geri alınıyor...");
         System.out.print("Kitap adını giriniz: ");
