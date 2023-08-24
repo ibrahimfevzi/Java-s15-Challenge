@@ -5,11 +5,10 @@ public class MemberRecord {
     private MemberType type;
     private String dateOfMembership;
     private int noBooksIssued = 0;
-    private int maxBookLimit = 2;
+    private int maxBookLimit = 5;
     private String name;
     private String address;
     private String phoneNo;
-
     public MemberRecord(String memberID, MemberType type, String dateOfMembership, int noBooksIssued, int maxBookLimit, String name, String address, String phoneNo) {
         this.memberID = memberID;
         this.type = type;

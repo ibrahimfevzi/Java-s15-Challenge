@@ -16,12 +16,23 @@ public class LibraryApp  {
     private static Library library = new Library();
     private static MemberRecord reader;
 
+
+
     public static void main(String[] args) {
         System.out.println("Kütüphane Yönetim Sistemine Hoşgeldiniz!");
 
         Librarian librarian = new Librarian("Admin", "password");
 
         Reader reader = new Reader(scanner, library); // Reader nesnesini oluştururken scanner ve library nesnelerini geçiyoruz
+
+        // Önceden tanımlı üye
+        MemberRecord predefinedMember = new MemberRecord("1", "READER", "ibrahim");
+        library.addMember(predefinedMember);
+
+        // Önceden tanımlı kitap
+        library.newBook("1", "1984", "Orwell", 29.99, "1st Edition", "2023-08-24");
+        library.newBook("2", "Hayvan Çiftliği", "Orwell", 19.99, "1st Edition", "2023-08-24");
+
 
 
         while (true) {
@@ -146,7 +157,6 @@ public class LibraryApp  {
     private static void addMember() {
         System.out.println("\nÜye ekleniyor...");
 
-        // Get member details from user input
         System.out.print("Üye ID girin: ");
         String memberID = scanner.nextLine();
         System.out.print("Üye adını girin: ");
