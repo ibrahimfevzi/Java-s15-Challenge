@@ -20,11 +20,14 @@ public class MemberRecord {
         this.phoneNo = phoneNo;
     }
 
+    /*
     public MemberRecord(String memberID, String type, String name) {
         this.memberID = memberID;
         this.type = MemberType.valueOf(type);
         this.name = name;
     }
+
+     */
 
     public String getName() {
         return name;

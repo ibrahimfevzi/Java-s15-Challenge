@@ -9,7 +9,23 @@ public class Librarian extends Person {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Librarian{" +
+                "password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     @Override
     public void whoYouAre() {

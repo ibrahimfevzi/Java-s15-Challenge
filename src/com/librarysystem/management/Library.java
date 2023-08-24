@@ -3,6 +3,7 @@ package com.librarysystem.management;
 import com.librarysystem.models.Book;
 import com.librarysystem.models.BookStatus;
 import com.librarysystem.models.MemberRecord;
+import com.librarysystem.users.Librarian;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,8 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Library {
-    private List<Book> books = new ArrayList<>();  // Kitap listesini başlatın
+    private List<Book> books = new ArrayList<>();  // Kitap listesini başlattık
     private static Map<String, MemberRecord> readers = new HashMap<>(); // Üye listesini başlatın
+
+    private List<Librarian> librarians = new ArrayList<>(); // Burada kütüphanecileri saklamak için bir liste oluşturuluyor
 
 
     public List<Book> getBooks() {
@@ -23,11 +26,45 @@ public class Library {
     }
 
 
+    public List<Librarian> getLibrarians() {
+        return librarians;
+    }
+
+    public Library() {
+        // Önceden tanımlı kütüphaneci
+        Librarian defaultLibrarian = new Librarian("Admin", "1234");
+        librarians.add(defaultLibrarian);
+    }
+
+
     public void newBook( String bookID, String author, String title, double price, String edition, String dateOfPurchase ) {
 
         Book book = new Book(bookID,  title, author, price, edition, dateOfPurchase);
         books.add(book);
-        System.out.println("Kitap Eklendi: " + book.getTitle());
+    }
+
+    public boolean removeBook(String bookID) {
+        Book book = findBookByTitle(bookID);
+        if (book != null) {
+            books.remove(book);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean updateBook(String bookID, String newTitle, String newAuthor, double newPrice,
+                              String newEdition, String newDateOfPurchase) {
+        Book book = findBookByTitle(bookID);
+        if (book != null) {
+            book.setTitle(newTitle);
+            book.setAuthor(newAuthor);
+            book.setPrice(newPrice);
+            book.setEdition(newEdition);
+            book.setDateOfPurchase(newDateOfPurchase);
+            return true;
+        }
+        return false;
     }
 
     public void lendBook(String book, String reader) {
@@ -159,6 +196,53 @@ public class Library {
 
     }
 
+    public boolean isBookIDExists(String bookID) {
+        return findBookById(bookID) != null;
+    }
+
+
+
+
+    public Book getBook(String bookID) {
+        return findBookByTitle(bookID);
+
+    }
+
+
+
+    public Book findBookById(String bookID) {
+        for (Book book : books) {
+            if (book.getBookID().equals(bookID)) {
+                return book;
+            }
+        }
+        System.out.println(bookID + " ID'li kitap bulunamadı.");
+        return null;
+    }
+
+    public boolean removeBookById(String bookID) {
+        Book book = findBookById(bookID);
+        if (book != null) {
+            books.remove(book);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean updateBookById(String bookID, String newTitle, String newAuthor, double newPrice,
+                                  String newEdition, String newDateOfPurchase) {
+        Book book = findBookById(bookID);
+        if (book != null) {
+            book.setTitle(newTitle);
+            book.setAuthor(newAuthor);
+            book.setPrice(newPrice);
+            book.setEdition(newEdition);
+            book.setDateOfPurchase(newDateOfPurchase);
+            return true;
+        }
+        return false;
+    }
 
 
 }

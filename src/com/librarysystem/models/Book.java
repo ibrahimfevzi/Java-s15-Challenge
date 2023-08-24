@@ -48,4 +48,36 @@ public class Book {
         System.out.println("Alındığı T: " + dateOfPurchase);
         System.out.println("Durum     : " + status);
     }
+
+    public void setBookID(String bookID) {
+        this.bookID = bookID;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setStatus(BookStatus status) {
+        this.status = status;
+    }
+
+    public void setEdition(String edition) {
+        this.edition = edition;
+    }
+
+    public void setDateOfPurchase(String dateOfPurchase) {
+        this.dateOfPurchase = dateOfPurchase;
+    }
+
+    public Object getBookID() {
+        return bookID;
+    }
 }
